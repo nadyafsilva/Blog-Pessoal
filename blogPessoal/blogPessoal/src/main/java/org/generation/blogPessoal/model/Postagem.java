@@ -22,22 +22,25 @@ public class Postagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	@Size(min = 5, max = 100)
-	private  String titulo;
-	
+	private String titulo;
+
 	@NotNull
 	@Size(min = 5, max = 100)
 	private String texto;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataPostagem = new java.sql.Date(System.currentTimeMillis());
-	
-	@ManyToOne 
+
+	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
 	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
 
 
 	public long getId() {
@@ -64,24 +67,28 @@ public class Postagem {
 		this.texto = texto;
 	}
 
-	
-	
-	public void setDataPostagem(Date dataPostagem) {
-		this.dataPostagem = dataPostagem;
-	}
-
 	public Date getDataPostagem() {
 		return dataPostagem;
 	}
 
+	public void setDataPostagem(Date dataPostagem) {
+		this.dataPostagem = dataPostagem;
+	}
 
 	public Tema getTema() {
 		return tema;
 	}
-	
+
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
 	
-	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 }
